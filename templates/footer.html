@@ -1,0 +1,66 @@
+<footer class="footer bg-dark text-light mt-5">
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h5 class="text-warning mb-3">
+                    <i class="bi bi-shop me-2"></i>Smart Restaurant
+                </h5>
+                <p class="text-muted">
+                    Experience fine dining with our smart ordering system.
+                    Fresh ingredients, authentic flavors, delivered to your table.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="text-warning me-3"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" class="text-warning me-3"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" class="text-warning me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-warning mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="{% url 'restaurant:home' %}" class="text-muted text-decoration-none footer-link">
+                            <i class="bi bi-chevron-right me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{% url 'restaurant:menu' %}" class="text-muted text-decoration-none footer-link">
+                            <i class="bi bi-chevron-right me-1"></i>Menu
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{% url 'restaurant:cart' %}" class="text-muted text-decoration-none footer-link">
+                            <i class="bi bi-chevron-right me-1"></i>Cart
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{% url 'restaurant:order_track_lookup' %}" class="text-muted text-decoration-none footer-link">
+                            <i class="bi bi-chevron-right me-1"></i>Track Order
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-warning mb-3">Contact Us</h5>
+                <ul class="list-unstyled text-muted">
+                    <li class="mb-2">
+                        <i class="bi bi-geo-alt me-2 text-warning"></i>123 Food Street, Culinary City
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-telephone me-2 text-warning"></i>+1 (555) 123-4567
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-envelope me-2 text-warning"></i>info@smartrestaurant.com
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-clock me-2 text-warning"></i>Mon-Sun: 10:00 AM - 11:00 PM
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-secondary my-4">
+        <div class="text-center text-muted">
+            <small>&copy; 2026 Smart Restaurant. All rights reserved.</small>
+        </div>
+    </div>
+</footer>

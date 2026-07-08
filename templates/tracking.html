@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if order %}Track Order #{{ order.id }}{% else %}Track Order{% endif %} - Smart Restaurant{% endblock %}
+
+{% block content %}
+<section class="page-header py-5 bg-dark text-white">
+    <div class="container">
+        <h1 class="fw-bold"><i class="bi bi-geo-alt me-2 text-warning"></i>Track Your Order</h1>
+        <p class="lead text-muted mb-0">Real-time order status updates</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        {% if lookup_mode %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="mb-3">Enter your Order ID</h5>
+                        <form method="get" action="{% url 'restaurant:order_track_lookup' %}">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text">#</span>
+                                <input type="number" name="order_id" class="form-control"
+                                       placeholder="Order ID" min="1" required>
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="bi bi-search me-1"></i>Track
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if order %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                            <div>
+                                <h3 class="mb-1">Order #{{ order.id }}</h3>
+                                <small class="text-muted">
+                                    Placed on {{ order.created_at|date:"M d, Y h:i A" }}
+                                </small>
+                            </div>
+                            <span id="order-status-badge" class="badge {{ order.status_badge_class }} fs-6 px-3 py-2">
+                                {{ order.get_status_display }}
+                            </span>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4">
+                                <small class="text-muted d-block">Customer</small>
+                                <strong>{{ order.customer_name }}</strong>
+                            </div>
+                            <div class="col-sm-4">
+                                <small class="text-muted d-block">Phone</small>
+                                <strong>{{ order.customer_phone }}</strong>
+                            </div>
+                            <div class="col-sm-4">
+                                <small class="text-muted d-block">Total</small>
+                                <strong class="text-warning">${{ order.total_amount }}</strong>
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3">Order Items</h5>
+                        {% for item in order.items.all %}
+                        <div class="d-flex justify-content-between py-2 {% if not forloop.last %}border-bottom{% endif %}">
+                            <span>{{ item.quantity }}x {{ item.menu_item.name }}</span>
+                            <span>${{ item.line_total }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-clock-history me-2"></i>Order Timeline
+                            <small class="text-muted ms-2 fw-normal" id="auto-refresh-indicator">
+                                <i class="bi bi-arrow-repeat"></i> Auto-refreshing every 5s
+                            </small>
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="order-timeline" id="order-timeline"
+                             data-order-id="{{ order.id }}"
+                             data-status-api="{% url 'restaurant:order_status_api' order_id=order.id %}"
+                             data-current-status="{{ order.status }}"
+                             data-current-index="{{ order.status_index }}">
+                            {% for step in status_steps %}
+                            <div class="timeline-step {% if forloop.counter0 <= order.status_index %}active{% endif %}"
+                                 data-status="{{ step.key }}" data-index="{{ forloop.counter0 }}">
+                                <div class="timeline-icon">
+                                    <i class="bi {{ step.icon }}"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h6 class="mb-0">{{ step.label }}</h6>
+                                    {% if forloop.counter0 < order.status_index %}
+                                    <small class="text-success">Completed</small>
+                                    {% elif forloop.counter0 == order.status_index %}
+                                    <small class="text-warning">Current</small>
+                                    {% else %}
+                                    <small class="text-muted">Pending</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if not forloop.last %}
+                            <div class="timeline-connector {% if forloop.counter0 < order.status_index %}active{% endif %}"></div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tracking.js' %}"></script>
+{% endblock %}

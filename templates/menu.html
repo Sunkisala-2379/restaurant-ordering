@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Menu - Smart Restaurant{% endblock %}
+
+{% block content %}
+<section class="page-header py-5 bg-dark text-white">
+    <div class="container">
+        <h1 class="fw-bold"><i class="bi bi-grid me-2 text-warning"></i>Our Menu</h1>
+        <p class="lead text-muted mb-0">Explore our delicious selection of dishes</p>
+    </div>
+</section>
+
+<section class="py-4 bg-light border-bottom">
+    <div class="container">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-5">
+                <label for="search-input" class="form-label fw-semibold">Search</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" id="search-input" class="form-control"
+                           placeholder="Search dishes..." value="{{ search_query }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="category-filter" class="form-label fw-semibold">Category</label>
+                <select id="category-filter" class="form-select">
+                    <option value="">All Categories</option>
+                    {% for category in categories %}
+                    <option value="{{ category.name }}" {% if selected_category == category.name %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="veg-filter" class="form-label fw-semibold">Diet</label>
+                <select id="veg-filter" class="form-select">
+                    <option value="">All</option>
+                    <option value="true" {% if veg_filter == 'true' %}selected{% endif %}>Vegetarian</option>
+                    <option value="false" {% if veg_filter == 'false' %}selected{% endif %}>Non-Veg</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="available-filter" class="form-label fw-semibold">Availability</label>
+                <select id="available-filter" class="form-select">
+                    <option value="">All</option>
+                    <option value="true" {% if available_filter == 'true' %}selected{% endif %}>Available</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div id="menu-results" class="row g-4">
+            {% for item in menu_items %}
+            <div class="col-md-6 col-lg-4 menu-item-card" data-name="{{ item.name|lower }}">
+                <div class="card menu-card h-100 border-0 shadow-sm">
+                    <div class="menu-card-img-wrapper">
+                        {% if item.image_url %}
+                        <img src="{{ item.image_url }}" class="card-img-top menu-card-img" alt="{{ item.name }}" loading="lazy">
+                        {% else %}
+                        <div class="menu-card-img-placeholder d-flex align-items-center justify-content-center">
+                            <i class="bi bi-image text-muted display-4"></i>
+                        </div>
+                        {% endif %}
+                        <div class="menu-card-badges">
+                            {% if item.is_vegetarian %}
+                            <span class="badge bg-success"><i class="bi bi-circle-fill me-1"></i>Veg</span>
+                            {% else %}
+                            <span class="badge bg-danger"><i class="bi bi-circle-fill me-1"></i>Non-Veg</span>
+                            {% endif %}
+                            {% if item.is_spicy %}
+                            <span class="badge bg-warning text-dark"><i class="bi bi-fire me-1"></i>Spicy</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0">{{ item.name }}</h5>
+                            {% if item.is_available %}
+                            <span class="badge bg-success">Available</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Unavailable</span>
+                            {% endif %}
+                        </div>
+                        <small class="text-muted mb-2">
+                            <i class="bi {{ item.category.icon }} me-1"></i>{{ item.category.name }}
+                        </small>
+                        <p class="card-text text-muted small flex-grow-1">{{ item.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="price-tag fw-bold text-warning fs-5">${{ item.price }}</span>
+                            {% if item.is_available %}
+                            <button class="btn btn-warning add-to-cart-btn"
+                                    data-id="{{ item.id }}"
+                                    data-name="{{ item.name }}"
+                                    data-price="{{ item.price }}"
+                                    data-image="{{ item.image_url }}"
+                                    data-vegetarian="{{ item.is_vegetarian|yesno:'true,false' }}">
+                                <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                            </button>
+                            {% else %}
+                            <button class="btn btn-secondary" disabled>Unavailable</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <i class="bi bi-search display-1 text-muted"></i>
+                <h4 class="mt-3 text-muted">No dishes found</h4>
+                <p class="text-muted">Try adjusting your search or filters.</p>
+                <a href="{% url 'restaurant:menu' %}" class="btn btn-warning">Clear Filters</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/category-filter.js' %}"></script>
+{% endblock %}
