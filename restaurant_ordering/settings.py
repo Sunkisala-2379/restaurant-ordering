@@ -13,18 +13,19 @@ SECRET_KEY = os.environ.get(
 )
 
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
-
 DEV_PORT = os.environ.get('DEV_PORT', '8080')
 
 ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS',
-    'localhost,127.0.0.1'
+    'localhost,127.0.0.1,.onrender.com'
 ).split(',')
 
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     'CSRF_TRUSTED_ORIGINS',
-    f'http://localhost:{DEV_PORT},http://127.0.0.1:{DEV_PORT}'
+    f'http://localhost:{DEV_PORT},http://127.0.0.1:{DEV_PORT},https://*.onrender.com'
 ).split(',')
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
