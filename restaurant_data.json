@@ -1,0 +1,260 @@
+[
+{
+  "model": "restaurant.category",
+  "pk": 1,
+  "fields": {
+    "name": "Starters",
+    "icon": "bi-egg-fried"
+  }
+},
+{
+  "model": "restaurant.category",
+  "pk": 2,
+  "fields": {
+    "name": "Main Course",
+    "icon": "bi-cup-hot"
+  }
+},
+{
+  "model": "restaurant.category",
+  "pk": 3,
+  "fields": {
+    "name": "Breads",
+    "icon": "bi-basket"
+  }
+},
+{
+  "model": "restaurant.category",
+  "pk": 4,
+  "fields": {
+    "name": "Desserts",
+    "icon": "bi-cake2"
+  }
+},
+{
+  "model": "restaurant.category",
+  "pk": 5,
+  "fields": {
+    "name": "Beverages",
+    "icon": "bi-cup-straw"
+  }
+},
+{
+  "model": "restaurant.category",
+  "pk": 6,
+  "fields": {
+    "name": "pizza",
+    "icon": "bi-egg-fried"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Crispy Spring Rolls",
+    "description": "Golden fried vegetable rolls served with sweet chili sauce.",
+    "price": "8.99",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "Chicken Wings",
+    "description": "Spicy buffalo wings with ranch dip and celery sticks.",
+    "price": "12.99",
+    "is_vegetarian": false,
+    "is_spicy": true,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Garlic Bread",
+    "description": "Toasted bread with garlic butter and herbs.",
+    "price": "6.49",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1619535850248-5a34a2a7c46e?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 4,
+  "fields": {
+    "category": 2,
+    "name": "Grilled Salmon",
+    "description": "Atlantic salmon with lemon butter sauce and seasonal vegetables.",
+    "price": "24.99",
+    "is_vegetarian": false,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1467003909585-bf5a0e845d1a?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "name": "Paneer Tikka Masala",
+    "description": "Cottage cheese cubes in rich tomato cream gravy.",
+    "price": "16.99",
+    "is_vegetarian": true,
+    "is_spicy": true,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "name": "Beef Burger",
+    "description": "Juicy beef patty with cheddar, lettuce, and special sauce.",
+    "price": "15.99",
+    "is_vegetarian": false,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "name": "Vegetable Pasta",
+    "description": "Penne pasta with seasonal vegetables in marinara sauce.",
+    "price": "14.49",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 8,
+  "fields": {
+    "category": 3,
+    "name": "Butter Naan",
+    "description": "Soft leavened flatbread brushed with butter.",
+    "price": "3.99",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 9,
+  "fields": {
+    "category": 3,
+    "name": "Garlic Naan",
+    "description": "Naan topped with fresh garlic and coriander.",
+    "price": "4.49",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 10,
+  "fields": {
+    "category": 4,
+    "name": "Chocolate Lava Cake",
+    "description": "Warm chocolate cake with molten center and vanilla ice cream.",
+    "price": "9.99",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 11,
+  "fields": {
+    "category": 4,
+    "name": "Tiramisu",
+    "description": "Classic Italian dessert with espresso-soaked ladyfingers.",
+    "price": "8.49",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 12,
+  "fields": {
+    "category": 5,
+    "name": "Fresh Lime Soda",
+    "description": "Refreshing lime soda with mint and ice.",
+    "price": "4.99",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 13,
+  "fields": {
+    "category": 5,
+    "name": "Iced Coffee",
+    "description": "Cold brew coffee with milk and a touch of vanilla.",
+    "price": "5.49",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1517701603779-8fc327d65b46?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 14,
+  "fields": {
+    "category": 5,
+    "name": "Mango Smoothie",
+    "description": "Blended fresh mango with yogurt and honey.",
+    "price": "6.99",
+    "is_vegetarian": true,
+    "is_spicy": false,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400"
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 15,
+  "fields": {
+    "category": 6,
+    "name": "Margherita pizza",
+    "description": "",
+    "price": "199.00",
+    "is_vegetarian": true,
+    "is_spicy": true,
+    "is_available": true,
+    "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  }
+}
+]
